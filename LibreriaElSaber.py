@@ -6,12 +6,14 @@ def mostrarMenu():
     while True:
         print("------------------------------------------")
         print("LIBRERIA EL SABER")
+        print("------------------------------------------")
         print("1.- Agregar libro")
         print("2.- Mostrar un libro")
         print("3.- Eliminar libro")
         print("4.- Listar inventario")
         print("5.- Valorizar inventario")
         print("6.- Salir")
+        print()
         while True:
             try:
                 opc = int(input("Ingrese la opcion que desea: "))
@@ -27,7 +29,7 @@ def mostrarMenu():
         elif opc == 3:
             eliminarLibro(libreria)
         elif opc == 4:
-            print()
+            listarInventario(libreria)
         elif opc == 5:
             print()
         elif opc == 6:
@@ -35,11 +37,8 @@ def mostrarMenu():
             break
 
 def validarCodigo(codigo):
-    if len(codigo) == 7 and codigo[0].isalpha() and codigo[1].isalpha() and codigo[2].isalnum() and codigo[3].isalnum() and codigo[4].isalnum() and codigo[5].isnumeric() and codigo[6].isnumeric():
-        return True
-    else:
-        return False
-
+    return len(codigo) == 7 and codigo[0].isalpha() and codigo[1].isalpha() and codigo[2].isalnum() and codigo[3].isalnum() and codigo[4].isalnum() and codigo[5].isnumeric() and codigo[6].isnumeric()
+        
 def validarAño(año):
     return año > 1450 and año <= 2026
 
@@ -92,7 +91,8 @@ def mostrarLibro(libreria):
         print(f"Titulo: {libreria[ubicacion]['titulo']}")
         print(f"Codigo: {libreria[ubicacion]['codigo']}")
         print(f"Año: {libreria[ubicacion]['año']}")
-        print(f"Precio: {libreria[ubicacion]['precio']}")
+        print(f"Precio: ${libreria[ubicacion]['precio']}")
+        print("------------------------------------------")
     else:
         print("Libro no encontrado.")
     
@@ -105,6 +105,18 @@ def eliminarLibro(libreria):
         libreria.pop(ubicacion)
     else:
         print("No valido, libro no encontrado.")
+
+def listarInventario(libreria):
+    for i in range(len(libreria)):
+        if len(libreria) > 0:
+            print("------------------------------------------")
+            print(f"Titulo: {libreria[i]['titulo']}")
+            print(f"Codigo: {libreria[i]['codigo']}")
+            print(f"Año: {libreria[i]['año']}")
+            print(f"Precio: ${libreria[i]['precio']}")
+        else:
+            print("Inventario Vacio")
+    
 
 
 mostrarMenu()
